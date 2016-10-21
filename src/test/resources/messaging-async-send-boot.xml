@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component-configuration
+    xmlns="http://tis.co.jp/nablarch/component-configuration"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://tis.co.jp/nablarch/component-configuration /component-configuration.xsd">
+
+  <!-- プロダクション用の設定読み込み -->
+  <import file="messaging-async-send-component-configuration.xml"/>
+
+  <import file="nablarch/core/date_test.xml"/>
+
+  <!-- マルチスレッド実行制御ハンドラの多重度を1に設定 -->
+  <component name="multiThreadExecutionHandler" class="nablarch.fw.handler.MultiThreadExecutionHandler">
+    <property name="concurrentNumber" value="1" />
+  </component>
+
+  <!-- リクエストスレッド側のループハンドラの無効化 -->
+  <component name="requestThreadLoopHandler" class="nablarch.test.OneShotLoopHandler" />
+
+  <!-- メッセージングプロバイダ定義 -->
+  <component name="messagingProvider"
+      class="nablarch.test.core.messaging.RequestTestingMessagingProvider" />
+
+  <!-- 初期化が必要なコンポーネント -->
+  <component name="initializer"
+             class="nablarch.core.repository.initialization.BasicApplicationInitializer">
+    <property name="initializeList">
+      <list>
+        <!-- common/date.xml:業務日付コンポーネント -->
+        <component-ref name="businessDateProvider" />
+        <!-- batch/handler/processStop.xml:処理停止ハンドラ -->
+        <component-ref name="processStopHandler" />
+        <component-ref name="idGenerator" />
+        <!-- メッセージングプロバイダ -->
+        <component-ref name="messagingProvider" />
+      </list>
+    </property>
+  </component>
+
+</component-configuration>
