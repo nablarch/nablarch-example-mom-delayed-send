@@ -1,5 +1,6 @@
 package com.nablarch.example.form;
 
+import java.sql.Timestamp;
 import java.util.Map;
 
 import nablarch.core.db.statement.autoproperty.CurrentDateTime;
@@ -13,15 +14,15 @@ import nablarch.core.db.statement.autoproperty.UserId;
 public class SendMessagingForm {
 
     /** 送信電文連番 */
-    private String sendMessageSequence;
+    private final String sendMessageSequence;
 
     /** 更新ユーザID */
     @UserId
-    private String updatedUserId;
+    private final String updatedUserId;
 
     /** 更新日時 */
     @CurrentDateTime
-    private java.sql.Timestamp updatedDate;
+    private final Timestamp updatedDate;
 
     /**
      * デフォルトコンストラクタ。
@@ -30,7 +31,7 @@ public class SendMessagingForm {
     public SendMessagingForm(Map<String, ?> data) {
        sendMessageSequence = (String) data.get("sendMessageSequence");
        updatedUserId = (String) data.get("updatedUserId");
-       updatedDate = (java.sql.Timestamp) data.get("updatedDate");
+       updatedDate = (Timestamp) data.get("updatedDate");
     }
 
     /**
@@ -53,7 +54,7 @@ public class SendMessagingForm {
      * 更新日時を取得する。
      * @return 更新日時
      */
-    public java.sql.Timestamp getUpdatedDate() {
+    public Timestamp getUpdatedDate() {
         return updatedDate;
     }
 }
