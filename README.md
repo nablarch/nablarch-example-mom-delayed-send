@@ -38,14 +38,10 @@ Gitを使用しない場合、最新のタグからzipをダウンロードし�
     $mvn -P gsp clean generate-resources
     $mvn -P gsp install:install-file
 
-#### 3.2. アプリケーションのビルド、依存するライブラリの取得
+#### 3.2. アプリケーションのビルド
 次に、アプリケーションをビルドします。以下のコマンドを実行してください。
 
     $mvn clean package
-
-ビルド後、以下のコマンドを実行し依存するライブラリを取得します。
-
-    $mvn dependency:copy-dependencies -DoutputDirectory=target/dependency
 
 ### 4. アプリケーションの起動
 
@@ -54,7 +50,11 @@ Gitを使用しない場合、最新のタグからzipをダウンロードし�
 以下のコマンドで、MOM応答不要メッセージングの送信側のExampleが起動します。
 
     $mvn -P gsp gsp-dba:import-schema
-    $java -cp target/nablarch-example-mom-delayed-send-<バージョン>-dev.jar;target/dependency/* nablarch.fw.launcher.Main -diConfig classpath:messaging-async-send-boot.xml -requestPath SENDAPP -userId batch_user -messageRequestId ProjectInsertMessage
+    $mvn exec:java -Dexec.mainClass=nablarch.fw.launcher.Main -Dexec.args="'-diConfig' 'messaging-async-send-boot.xml' '-requestPath' 'SENDAPP' '-userId' 'batch_user' '-messageRequestId' 'ProjectInsertMessage'"
+
+なお、 `maven-assembly-plugin` を使用して実行可能jarの生成を行っているため、以下のコマンドでもアプリケーションを実行することが可能です。
+
+    $java -jar target/application-<version_no>.jar -diConfig classpath:messaging-async-send-boot.xml -requestPath SENDAPP -userId batch_user -messageRequestId ProjectInsertMessage
 
 起動に成功すると以下のようなログがコンソールに出力され、メッセージが送信されます。
 
