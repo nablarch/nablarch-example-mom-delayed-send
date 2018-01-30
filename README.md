@@ -40,26 +40,28 @@ Gitを使用しない場合、最新のタグからzipをダウンロードし�
 まず、データベースのセットアップ及びエンティティクラスの作成を行います。以下のコマンドを実行してください。
 
     $cd nablarch-example-mom-delayed-send
-    $mvn -P gsp clean generate-resources
-    $mvn -P gsp install:install-file
+    $mvn clean generate-resources
 
 #### 3.2. アプリケーションのビルド
 次に、アプリケーションをビルドします。以下のコマンドを実行してください。
 
-    $mvn clean package
+    $mvn package
 
 ### 4. アプリケーションの起動
 
 先にMOM応答不要メッセージングの受信側のExampleを起動しておいてください。
 
-以下のコマンドで、MOM応答不要メッセージングの送信側のExampleが起動します。
+以下のコマンドで、データベースの状態を最新化、MOM応答不要メッセージングの送信側のExampleが起動します。
 
-    $mvn -P gsp gsp-dba:import-schema
+    $mvn generate-resources
     $mvn exec:java -Dexec.mainClass=nablarch.fw.launcher.Main -Dexec.args="'-diConfig' 'messaging-async-send-boot.xml' '-requestPath' 'SENDAPP' '-userId' 'batch_user' '-messageRequestId' 'ProjectInsertMessage'"
 
-なお、 `maven-assembly-plugin` を使用して実行可能jarの生成を行っているため、以下のコマンドでもアプリケーションを実行することが可能です。
+なお、 `maven-assembly-plugin` を使用して実行可能jarの生成を行っているため、以下の手順にて実行することもできます。
 
-    $java -jar target/application-<version_no>.jar -diConfig classpath:messaging-async-send-boot.xml -requestPath SENDAPP -userId batch_user -messageRequestId ProjectInsertMessage
+1. ``target/application-<version_no>.zip`` を任意のディレクトリに解凍する。
+2. 以下のコマンドにて実行する
+
+    $java -jar <1で解凍したディレクトリ名>/nablarch-example-mom-delayed-send-<version_no>.jar -diConfig classpath:messaging-async-send-boot.xml -requestPath SENDAPP -userId batch_user -messageRequestId ProjectInsertMessage
 
 起動に成功すると以下のようなログがコンソールに出力され、メッセージが送信されます。
 
