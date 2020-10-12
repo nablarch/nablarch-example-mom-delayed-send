@@ -1,10 +1,6 @@
 nablarch-example-mom-delayed-send
 ====================================
 
-| master | develop |
-|:-----------|:------------|
-|[![Build Status](https://travis-ci.org/nablarch/nablarch-example-mom-delayed-send.svg?branch=master)](https://travis-ci.org/nablarch/nablarch-example-mom-delayed-send)|[![Build Status](https://travis-ci.org/nablarch/nablarch-example-mom-delayed-send.svg?branch=develop)](https://travis-ci.org/nablarch/nablarch-example-mom-delayed-send)|
-
 Nablarch FrameworkのMOM応答不要メッセージングの送信側のExampleで、テーブルをキューとして使ったメッセージングを用いて構築しています。
 MOM応答不要メッセージングの受信側のExampleと組み合わせて使用します。
 
