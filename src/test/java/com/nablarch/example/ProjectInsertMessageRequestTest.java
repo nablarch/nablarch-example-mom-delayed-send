@@ -1,17 +1,20 @@
 package com.nablarch.example;
 
-import org.junit.Test;
-
-import com.nablarch.example.test.BatchRequestTestBase;
+import nablarch.test.core.batch.BatchRequestTestSupport;
+import nablarch.test.junit5.extension.batch.BatchRequestTest;
+import org.junit.jupiter.api.Test;
 
 /**
  * ユーザ削除情報メッセージ(リクエストID:ProjectInsertMessage)のテスト。
  */
-public class ProjectInsertMessageRequestTest extends BatchRequestTestBase {
+@BatchRequestTest
+class ProjectInsertMessageRequestTest{
+
+    BatchRequestTestSupport support;
 
     @Test
-    public void testSendMessage() {
-        execute();
+    void testSendMessage() {
+        support.execute(support.testName.getMethodName());
     }
 }
 
