@@ -14,8 +14,8 @@ MOM応答不要メッセージングの受信側のExampleと組み合わせて�
 
 ### 1.動作環境
 実行環境に以下のソフトウェアがインストールされている事を前提とします。
-* Java Version : 8
-* Maven 3.0.5以降
+* Java Version : 17
+* Maven 3.9.0以降
 
 補足：
 MOMは、MOM応答不要メッセージングの受信側のExampleに組み込まれたものを使用します。
@@ -61,29 +61,40 @@ Gitを使用しない場合、最新のタグからzipをダウンロードし�
 
 起動に成功すると以下のようなログがコンソールに出力され、メッセージが送信されます。
 
-    2016-06-09 09:58:41.874 -INFO- ROO [null] @@@@ APPLICATION SETTINGS @@@@
-            system settings = {
-            }
-            business date = [20140123]
-    2016-06-09 09:58:42.264 -INFO- ROO [201606090958418740001] read database record. key info: {SEND_MESSAGE_SEQUENCE=0000000001}
-    2016-06-09 09:58:42.358 -INFO- ROO [201606090958422640002] @@@@ SENT MESSAGE @@@@
-            thread_name    = [pool-1-thread-1]
-            message_id     = [ID:S1306C00419-T1-20683-1465433922061-1:1:1:1:1]
-            destination    = [TEST.REQUEST]
-            correlation_id = [null]
-            reply_to       = [null]
-            time_to_live   = [0]
-            message_body   = [ProjectInsertMessage0000000001100                 プロジェクト００１
-                                                                                                    development
-                                                                                                                        s
-                                                                                                                                            20100918201504091        鈴木
-                                                                                                                                                                                         佐藤
-                                                                                                                                                                                                             100      備考欄
+```log
+2023-02-15 14:46:38.725 -INFO- nablarch.fw.launcher.Main [null] boot_proc = [] proc_sys = [mom-delayed-send] req_id = [null] usr_id =
+ [null] @@@@ APPLICATION SETTINGS @@@@
+        system settings = {
+        }
+        business date = [20140123]
+2023-02-15 14:46:39.367 -INFO- nablarch.fw.reader.DatabaseTableQueueReader [202302151446387260001] boot_proc = [] proc_sys = [mom-del
+ayed-send] req_id = [SENDAPP] usr_id = [batch_user] read database record. key info: {SEND_MESSAGE_SEQUENCE=0000000001}
+2023-02-15 14:46:39.456 -INFO- MESSAGING [202302151446393690002] boot_proc = [] proc_sys = [mom-delayed-send] req_id = [SENDAPP] usr_
+id = [batch_user] @@@@ SENT MESSAGE @@@@
+        thread_name    = [pool-1-thread-1]
+        message_id     = [ID:1e07ab35-acf4-11ed-8482-9c7befbbf589]
+        destination    = [TEST.REQUEST]
+        correlation_id = [null]
+        reply_to       = [null]
+        time_to_live   = [0]
+        message_body   = [ProjectInsertMessage0000000001                    プロジェクト００１
+
+                                                                  development
+                                                             s
+                                                        20100918201504091        鈴木
+
+                                                                       佐藤
+
+                                                             100      備考欄
 
 
 
 
-                                                          10000    1000     2000     3000           ]
+
+
+
+                              10000    1000     2000     3000       ]
+```
 
 
 自動的に終了はしないため、ctrl + c等で終了させてください。
