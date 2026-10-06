@@ -6,7 +6,7 @@
 |---|---|---|---|---|
 | 変換対象の全Excelに対応するYAMLが生成されている | OK | 変換対象は `ProjectInsertMessageRequestTest.xlsx`（1件、同名 .xls の併存なし）。`mvn ...:convert` で `Converted 1 file(s). / BUILD SUCCESS`。生成: `ProjectInsertMessageRequestTest/testSendMessage.yaml`（データ有）, `ProjectInsertMessageRequestTest/setUpDb.yaml`（setUpDb シートが空のため0バイト） | OK | `find src -iname '*.xls*'` で対象1件のみ・.xls併存なしを独立確認。両YAML生成を確認 |
 | サンプリング比較でExcelとYAMLの内容が一致 | OK | 下記「サンプリング比較詳細」の通り、全データブロックで一致。差異なし | OK | 生XML(zipfile)を直接確認し5ブロック全セル一致を独立検証。ふりがな(`<rPh>`38件)はYAMLに非混入をgrepで確認。setUpDbは `<sheetData/>` 空＝0バイトは欠落でないと確認 |
-| 変換後YAMLがコミットされている | OK | YAML 2件とサンプリング用スクリプトをコミット（Excルは未削除、コミット `0f99f2f`） | OK | （QAレビューはコミット前に実施したため当時は未達判定。本コミットで解消） |
+| 変換後YAMLがコミットされている | OK | YAML 2件とサンプリング用スクリプトをコミット（Excelは未削除、コミット `cc6657c`） | OK | （QAレビューはコミット前に実施したため当時は未達判定。本コミット `cc6657c` で解消） |
 
 ### サンプリング比較詳細
 

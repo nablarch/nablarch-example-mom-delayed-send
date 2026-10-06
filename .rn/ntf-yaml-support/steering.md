@@ -138,12 +138,12 @@ NTF（Nablarch Testing Framework）のAI対応として、AIが読み書きで�
 
 **Steps**:
 
-- [ ] 変換対象となった Excel ファイルを削除する
-- [ ] 削除結果（残存Excelが0件であること）を `checks/task-4.md` に記録する（Excelなしでの `mvn clean test` 実行とその結果の確認は Task #5 で行う）
-- [ ] Excelファイル削除をコミットする
-- [ ] self-check (OK/NG per completion criterion, record in checks/task-4.md)
-- [ ] QA expert review (Agent: general-purpose / Opus 4.8)
-- [ ] user review
+- [x] 変換対象となった Excel ファイルを削除する
+- [x] 削除結果（残存Excelが0件であること）を `checks/task-4.md` に記録する（Excelなしでの `mvn clean test` 実行とその結果の確認は Task #5 で行う）
+- [x] Excelファイル削除をコミットする
+- [x] self-check (OK/NG per completion criterion, record in checks/task-4.md)
+- [x] QA expert review (Agent: general-purpose / Opus 4.8)
+- [x] user review（順調のため確認省略）
 
 **Completion criteria**:
 
