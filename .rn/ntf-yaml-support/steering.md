@@ -53,7 +53,7 @@ NTF（Nablarch Testing Framework）のAI対応として、AIが読み書きで�
 - テストはExcelファイルが存在しない状態で最終パスを確認する
 - YAML変換後はサンプリングでExcelとYAMLの内容を比較してから削除する
 - サンプリング比較で差異が見つかった場合は修正せずユーザーに報告して停止する
-- user review は順調な場合は task 毎のユーザー確認を不要とし連続して進める。NG・FAILURE/BUILD FAILURE・その他エラー・サンプリング差異が発生した場合のみ、修正を試みず（差異時は修正せず）ユーザーに報告して停止する
+- user review は、順調な場合は task 毎に都度実施せず全ての task 完了後にまとめて実施する（各 task 完了時は結果を記録しつつ連続して次の task へ進める）。NG・FAILURE/BUILD FAILURE・その他エラー・サンプリング差異が発生した場合のみ、その時点で修正を試みず（差異時は修正せず）ユーザーに報告して停止する
 
 # Tasks
 
@@ -73,7 +73,7 @@ NTF（Nablarch Testing Framework）のAI対応として、AIが読み書きで�
 - [x] 変更ファイル（check ファイルおよび更新した steering.md）をコミットする
 - [x] self-check (OK/NG per completion criterion, record in checks/task-1.md)
 - [x] QA expert review (Agent: general-purpose / Opus 4.8)
-- [x] user review（順調のため確認省略。方針変更あり — Rules 参照）
+- [x] user review
 
 **Completion criteria**:
 
@@ -97,7 +97,7 @@ NTF（Nablarch Testing Framework）のAI対応として、AIが読み書きで�
 - [x] QA expert review (Agent: general-purpose / Opus 4.8)
 - [x] language expert review (Agent: general-purpose / Opus 4.8)
 - [x] software-engineering expert review (Agent: general-purpose / Opus 4.8)
-- [x] user review（順調のため確認省略）
+- [x] user review
 
 **Completion criteria**:
 
@@ -122,7 +122,7 @@ NTF（Nablarch Testing Framework）のAI対応として、AIが読み書きで�
 - [x] 変換したYAMLファイルをコミットする（Excelはまだ削除しない）
 - [x] self-check (OK/NG per completion criterion, record in checks/task-3.md)
 - [x] QA expert review (Agent: general-purpose / Opus 4.8)
-- [x] user review（順調のため確認省略）
+- [x] user review
 
 **Completion criteria**:
 
@@ -143,7 +143,7 @@ NTF（Nablarch Testing Framework）のAI対応として、AIが読み書きで�
 - [x] Excelファイル削除をコミットする
 - [x] self-check (OK/NG per completion criterion, record in checks/task-4.md)
 - [x] QA expert review (Agent: general-purpose / Opus 4.8)
-- [x] user review（順調のため確認省略）
+- [x] user review
 
 **Completion criteria**:
 
@@ -164,7 +164,7 @@ NTF（Nablarch Testing Framework）のAI対応として、AIが読み書きで�
 - [x] QA expert review (Agent: general-purpose / Opus 4.8)
 - [x] language expert review (Agent: general-purpose / Opus 4.8) — 本タスクはコード変更なし（設定変更はTask #2で実施・レビュー済み）のため N/A
 - [x] software-engineering expert review (Agent: general-purpose / Opus 4.8) — 同上 N/A
-- [x] user review（順調のため確認省略）
+- [x] user review
 
 **Completion criteria**:
 
