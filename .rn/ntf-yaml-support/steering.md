@@ -49,6 +49,7 @@ NTF（Nablarch Testing Framework）のAI対応として、AIが読み書きで�
 - テストはExcelファイルが存在しない状態で最終パスを確認する
 - YAML変換後はサンプリングでExcelとYAMLの内容を比較してから削除する
 - サンプリング比較で差異が見つかった場合は修正せずユーザーに報告して停止する
+- user review は順調な場合は task 毎のユーザー確認を不要とし連続して進める。NG・FAILURE/BUILD FAILURE・その他エラー・サンプリング差異が発生した場合のみ、修正を試みず（差異時は修正せず）ユーザーに報告して停止する
 
 # Tasks
 
@@ -68,7 +69,7 @@ NTF（Nablarch Testing Framework）のAI対応として、AIが読み書きで�
 - [x] 変更ファイル（check ファイルおよび更新した steering.md）をコミットする
 - [x] self-check (OK/NG per completion criterion, record in checks/task-1.md)
 - [x] QA expert review (Agent: general-purpose / Opus 4.8)
-- [ ] user review
+- [x] user review（順調のため確認省略。方針変更あり — Rules 参照）
 
 **Completion criteria**:
 
@@ -83,16 +84,16 @@ NTF（Nablarch Testing Framework）のAI対応として、AIが読み書きで�
 
 **Steps**:
 
-- [ ] `pom.xml` に `nablarch-testing-yaml:1.0.0-SNAPSHOT`（test scope）を追加する
-- [ ] `pom.xml` の `<build><plugins>` に `nablarch-testing-converter:1.0.0-SNAPSHOT` をビルドプラグインとして追加する（`<configuration>` に from=xls / to=yaml / input / output / overwrite を設定。web/batch 準拠）
-- [ ] `unit-test.xml` に `yamlInterpreters` リストと `YamlTestDataParser` コンポーネントを追加する（隣接プロジェクトを参考）
-- [ ] `mvn dependency:resolve` で yaml 依存が解決できること、`mvn help:describe -Dplugin=com.nablarch.framework:nablarch-testing-converter:1.0.0-SNAPSHOT` で converter プラグインの `convert` ゴールが解決できることを確認する
-- [ ] 変更したファイルをコミットする
-- [ ] self-check (OK/NG per completion criterion, record in checks/task-2.md)
-- [ ] QA expert review (Agent: general-purpose / Opus 4.8)
-- [ ] language expert review (Agent: general-purpose / Opus 4.8)
-- [ ] software-engineering expert review (Agent: general-purpose / Opus 4.8)
-- [ ] user review
+- [x] `pom.xml` に `nablarch-testing-yaml:1.0.0-SNAPSHOT`（test scope）を追加する
+- [x] `pom.xml` の `<build><plugins>` に `nablarch-testing-converter:1.0.0-SNAPSHOT` をビルドプラグインとして追加する（`<configuration>` に from=xls / to=yaml / input / output / overwrite を設定。web/batch 準拠）
+- [x] `unit-test.xml` に `yamlInterpreters` リストと `YamlTestDataParser` コンポーネントを追加する（隣接プロジェクトを参考）
+- [x] `mvn dependency:resolve` で yaml 依存が解決できること、`mvn help:describe -Dplugin=com.nablarch.framework:nablarch-testing-converter:1.0.0-SNAPSHOT` で converter プラグインの `convert` ゴールが解決できることを確認する
+- [x] 変更したファイルをコミットする
+- [x] self-check (OK/NG per completion criterion, record in checks/task-2.md)
+- [x] QA expert review (Agent: general-purpose / Opus 4.8)
+- [x] language expert review (Agent: general-purpose / Opus 4.8)
+- [x] software-engineering expert review (Agent: general-purpose / Opus 4.8)
+- [x] user review（順調のため確認省略）
 
 **Completion criteria**:
 
