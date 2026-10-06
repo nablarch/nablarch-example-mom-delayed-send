@@ -1,0 +1,107 @@
+list_maps:
+  - id: "testShots"
+    rows:
+      - no: "1"
+        description: "正常系ケース\n\n電文が想定通り送信され、テーブルの処理ステータスが送信済みに更新されること。"
+        expectedStatusCode: "0"
+        setUpTable: "1"
+        expectedTable: "1"
+        expectedMessage: "1"
+        diConfig: "messaging-async-send-boot.xml"
+        requestPath: "SENDAPP"
+        userId: "batch_user"
+        messageRequestId: "ProjectInsertMessage"
+
+setup_tables:
+  - group_id: "1"
+    table: "INS_PROJECT_SEND_MESSAGE"
+    rows:
+      - SEND_MESSAGE_SEQUENCE: "0000010001"
+        PROJECT_NAME: "プロジェクト００１"
+        PROJECT_TYPE: "development"
+        PROJECT_CLASS: "s"
+        PROJECT_START_DATE: "2010-9-18 00:00:00.0"
+        PROJECT_END_DATE: "2015-4-9 00:00:00.0"
+        CLIENT_ID: "1"
+        PROJECT_MANAGER: "鈴木"
+        PROJECT_LEADER: "佐藤"
+        USER_ID: "100"
+        NOTE: "備考欄"
+        SALES: "10000"
+        COST_OF_GOODS_SOLD: "1000"
+        SGA: "2000"
+        ALLOCATION_OF_CORP_EXPENSES: "3000"
+        STATUS: "0"
+        INSERT_USER_ID: "0000000001"
+        INSERT_DATE: "2010-09-13 12:34:55.0"
+        UPDATED_USER_ID: "0000000001"
+        UPDATED_DATE: "2010-09-13 12:34:55.0"
+        INSERT_REQUEST_ID: "RB11AC0110"
+
+expected_request_header_messages:
+  - group_id: "1"
+    id: "ProjectInsertMessage"
+    directives:
+      file-type: "Fixed"
+      text-encoding: "MS932"
+    records:
+      - record_type: "no"
+        fields:
+          - {name: "リクエストID", type: "半角", length: "20"}
+          - {name: "電文連番", type: "半角", length: "10"}
+          - {name: "予備領域", type: "半角", length: "20"}
+        rows:
+          - ["ProjectInsertMessage", "0000010001", ""]
+
+expected_request_body_messages:
+  - group_id: "1"
+    id: "ProjectInsertMessage"
+    directives:
+      file-type: "Fixed"
+      text-encoding: "MS932"
+    records:
+      - record_type: "no"
+        fields:
+          - {name: "プロジェクト名", type: "全半角", length: "256"}
+          - {name: "プロジェクト種別", type: "半角", length: "128"}
+          - {name: "プロジェクト分類", type: "半角", length: "128"}
+          - {name: "プロジェクト開始日付", type: "半角", length: "8"}
+          - {name: "プロジェクト終了日付", type: "半角", length: "8"}
+          - {name: "顧客ID", type: "半角", length: "9"}
+          - {name: "プロジェクトマネージャー", type: "全半角", length: "256"}
+          - {name: "プロジェクトリーダー", type: "全半角", length: "256"}
+          - {name: "ユーザID", type: "半角", length: "9"}
+          - {name: "備考", type: "全半角", length: "1024"}
+          - {name: "売上高", type: "半角", length: "9"}
+          - {name: "売上原価", type: "半角", length: "9"}
+          - {name: "販管費", type: "半角", length: "9"}
+          - {name: "本社配賦", type: "半角", length: "9"}
+          - {name: "FILLER2", type: "半角", length: "2"}
+        rows:
+          - ["プロジェクト００１", "development", "s", "20100918", "20150409", "1", "鈴木", "佐藤", "100", "備考欄", "10000", "1000", "2000", "3000", ""]
+
+expected_tables:
+  - group_id: "1"
+    table: "INS_PROJECT_SEND_MESSAGE"
+    rows:
+      - SEND_MESSAGE_SEQUENCE: "0000010001"
+        PROJECT_NAME: "プロジェクト００１"
+        PROJECT_TYPE: "development"
+        PROJECT_CLASS: "s"
+        PROJECT_START_DATE: "2010-09-18"
+        PROJECT_END_DATE: "2015-04-09"
+        CLIENT_ID: "1"
+        PROJECT_MANAGER: "鈴木"
+        PROJECT_LEADER: "佐藤"
+        USER_ID: "100"
+        NOTE: "備考欄"
+        SALES: "10000"
+        COST_OF_GOODS_SOLD: "1000"
+        SGA: "2000"
+        ALLOCATION_OF_CORP_EXPENSES: "3000"
+        STATUS: "1"
+        INSERT_USER_ID: "0000000001"
+        INSERT_DATE: "2010-09-13 12:34:55.0"
+        UPDATED_USER_ID: "batch_user"
+        UPDATED_DATE: "2014-09-13 12:34:56.0"
+        INSERT_REQUEST_ID: "RB11AC0110"
