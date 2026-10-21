@@ -91,7 +91,8 @@ def main(xlsx, yaml_dir):
     print("| --- | --- | --- | --- | --- |")
     for yfile, label, sheet, cell, ypath in SAMPLES:
         with open(os.path.join(yaml_dir, yfile), encoding="utf-8") as f:
-            ydata = yaml.safe_load(f)
+            # NTF（YAML 1.2）と同様に全スカラーを文字列として読む（YAML 1.1 の no -> False 等を避ける）
+            ydata = yaml.load(f, Loader=yaml.BaseLoader)
         xval = sheets[sheet].get(cell, "")
         yval = dig(ydata, ypath)
         match = xval == yval
@@ -102,9 +103,14 @@ def main(xlsx, yaml_dir):
         if not any(v not in (None, "") for v in cells.values()):
             ypath = os.path.join(yaml_dir, sheet + ".yaml")
             with open(ypath, encoding="utf-8") as f:
-                empty = yaml.safe_load(f) is None
+                empty = yaml.load(f, Loader=yaml.BaseLoader) is None
             ok = ok and empty
             print("| %s.yaml | （元シートにデータなし） | （空） | %s | %s |" % (sheet, "（空）" if empty else "（非空）", "OK" if empty else "NG"))
+    # Excel のシートと YAML ファイルが過不足なく 1 対 1 で対応していることを確認する
+    yamls = {os.path.splitext(n)[0] for n in os.listdir(yaml_dir) if n.endswith(".yaml")}
+    same = yamls == set(sheets)
+    ok = ok and same
+    print("\nsheets=%s yamls=%s correspondence=%s" % (sorted(sheets), sorted(yamls), "OK" if same else "NG"))
     return 0 if ok else 1
 
 

@@ -22,7 +22,7 @@
 
 ## Scripts
 - `scripts/dump_xlsx.py`（Task #3）: サンプリング比較用。外部ライブラリなしで `.xlsx` の各シートのセル値をテキストダンプし、converter が生成した YAML と目視で比較できるようにする（`python3 -I dump_xlsx.py <xlsx>`）。
-- `scripts/compare_samples.py`（Task #3）: サンプリング比較用。Excel の指定セル値と YAML の指定パスの値を突き合わせ、一致/不一致を Markdown 表で出力する（`python3 -I compare_samples.py <xlsx> <yaml-dir>`、全一致で rc=0）。データなしシートの YAML が空であることも確認する。
+- `scripts/compare_samples.py`（Task #3）: サンプリング比較用。Excel の指定セル値と YAML の指定パスの値を突き合わせ、一致/不一致を Markdown 表で出力する（`python3 -I compare_samples.py <xlsx> <yaml-dir>`、全一致で rc=0）。データなしシートの YAML が空であること、Excel シートと YAML ファイルの1対1対応も確認する。YAML は NTF と同じく全スカラーを文字列として読む（`yaml.BaseLoader`）。
 
 ## Tasks
 
@@ -79,7 +79,7 @@
 - [x] 比較結果を `checks/task-3.md` の Sampling Comparison に記録する
 - [x] YAML をコミットする（Excel はまだ削除しない）
 - [x] self-check
-- [ ] QA expert review (Agent: general-purpose / Opus)
+- [x] QA expert review（OK。改善提案を compare_samples.py に反映） (Agent: general-purpose / Opus)
 - [ ] user review（全 task 完了後にまとめて実施）
 **Completion criteria**:
 - 変換対象の全 Excel に対応する YAML が生成されている
