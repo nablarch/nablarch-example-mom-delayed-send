@@ -90,10 +90,10 @@
 **Purpose**: 変換対象だった Excel を削除してコミットする。
 **Prerequisites**: #3
 **Steps**:
-- [ ] 変換対象の Excel を削除する
-- [ ] 残存 Excel 0 件を `checks/task-4.md` に記録する
-- [ ] 削除をコミットする
-- [ ] self-check
+- [x] 変換対象の Excel を削除する（`ProjectInsertMessageRequestTest.xlsx`）
+- [x] 残存 Excel 0 件を `checks/task-4.md` に記録する
+- [x] 削除をコミットする
+- [x] self-check
 - [ ] QA expert review (Agent: general-purpose / Opus)
 - [ ] user review（全 task 完了後にまとめて実施）
 **Completion criteria**:
