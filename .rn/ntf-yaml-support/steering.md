@@ -52,13 +52,13 @@
 **Purpose**: `pom.xml` に `nablarch-testing-yaml`（test 依存）と `nablarch-testing-converter`（ビルドプラグイン）を追加し、`YamlTestDataParser` を Rules の「全フェーズで有効化」方針に従って配置する。
 **Prerequisites**: #1
 **Steps**:
-- [ ] `pom.xml` に `nablarch-testing-yaml:1.0.0-SNAPSHOT`（test scope）を追加する
-- [ ] `pom.xml` の `<build><plugins>` に `nablarch-testing-converter:1.0.0-SNAPSHOT` を追加する（`<configuration>` に from=xls / to=yaml / input / output / overwrite。web/batch 準拠）
-- [ ] 応答電文（`response_*` / sendSync）の有無から、実行中にモックが `testDataParser` 経由でテストデータを読む構成かを判定する
-- [ ] 判定結果に応じて `YamlTestDataParser` を配置する（`interpreters` は `dateTimeInterpreter` → `compositeInterpreter` の2つのみ。`test-data.xml` の import・`dbInfo` 定義より後）
-- [ ] `mvn dependency:resolve` と `mvn help:describe -Dplugin=com.nablarch.framework:nablarch-testing-converter:1.0.0-SNAPSHOT` で解決を確認する
-- [ ] 変更したファイルをコミットする
-- [ ] self-check
+- [x] `pom.xml` に `nablarch-testing-yaml:1.0.0-SNAPSHOT`（test scope）を追加する
+- [x] `pom.xml` の `<build><plugins>` に `nablarch-testing-converter:1.0.0-SNAPSHOT` を追加する（`<configuration>` に from=xls / to=yaml / input / output / overwrite。web/batch 準拠）
+- [x] 応答電文（`response_*` / sendSync）の有無から、実行中にモックが `testDataParser` 経由でテストデータを読む構成かを判定する → 非該当（`RESPONSE_*` なし。送信のみの非同期・応答不要）
+- [x] 判定結果に応じて `YamlTestDataParser` を配置する → `src/test/resources/unit-test.xml`（`interpreters` は `dateTimeInterpreter` → `compositeInterpreter` の2つのみ。`test-data.xml` の import・`dbInfo` 定義より後）
+- [x] `mvn dependency:resolve` と `mvn help:describe -Dplugin=com.nablarch.framework:nablarch-testing-converter:1.0.0-SNAPSHOT` で解決を確認する
+- [x] 変更したファイルをコミットする
+- [x] self-check
 - [ ] QA / language / software-engineering expert review (Agent: general-purpose / Opus)
 - [ ] user review（全 task 完了後にまとめて実施）
 **Completion criteria**:
