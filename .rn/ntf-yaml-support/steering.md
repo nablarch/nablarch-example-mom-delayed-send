@@ -24,6 +24,10 @@
 - `scripts/dump_xlsx.py`（Task #3）: サンプリング比較用。外部ライブラリなしで `.xlsx` の各シートのセル値をテキストダンプし、converter が生成した YAML と目視で比較できるようにする（`python3 -I dump_xlsx.py <xlsx>`）。
 - `scripts/compare_samples.py`（Task #3）: サンプリング比較用。Excel の指定セル値と YAML の指定パスの値を突き合わせ、一致/不一致を Markdown 表で出力する（`python3 -I compare_samples.py <xlsx> <yaml-dir>`、全一致で rc=0）。データなしシートの YAML が空であること、Excel シートと YAML ファイルの1対1対応も確認する。YAML は NTF と同じく全スカラーを文字列として読む（`yaml.BaseLoader`）。
 
+## 今後のテスト追加時の方針
+- テストデータは `src/test/java/<package>/<テストクラス名>/<シート名>.yaml` に YAML で追加する（Excel は追加しない）。データの無いシートは 0 バイトの YAML で問題ない（例: `setUpDb.yaml`）。
+- `YamlTestDataParser` は `src/test/resources/unit-test.xml` に定義済み。応答電文（`RESPONSE_*` / sendSync）を持つ同期送信系テストを追加する場合は、アクション起動 diConfig（テスト用 `*-boot.xml`）側にも配置が必要（指示書 Rules 参照）。
+
 ## Tasks
 
 ### #1: ベースライン化（developと同一状態）し、全PASSを確認する
@@ -107,7 +111,7 @@
 - [x] `mvn clean generate-resources` → `mvn test` が BUILD SUCCESS になることを確認する（Tests run: 1, Failures: 0, Errors: 0, Skipped: 0）
 - [x] テストログで YamlTestDataParser が実際に使われていることを確認する（`testDataParser` の override WARN と `YamlTestDataParser` の INFO ログ）
 - [x] self-check
-- [ ] QA / language / software-engineering expert review (Agent: general-purpose / Opus)
+- [x] QA / language / software-engineering expert review（いずれも OK） (Agent: general-purpose / Opus)
 - [ ] user review（全 task 完了後にまとめて実施）
 **Completion criteria**:
 - `mvn test` が BUILD SUCCESS で終了する（全テストパス、Excel ファイルなし）
