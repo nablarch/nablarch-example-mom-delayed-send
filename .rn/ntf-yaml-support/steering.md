@@ -17,7 +17,7 @@
 - 本作業での実行手順:
   1. エンティティ生成: `mvn clean generate-resources`
   2. テスト: `mvn test`
-- 実行環境: OpenJDK 21.0.2 / Apache Maven 3.9.16。
+- 実行環境: Apache Maven 3.9.16 / Maven 実行時の Java は Eclipse Temurin 17.0.20（`~/.mavenrc` で `JAVA_HOME` を temurin-17 に設定。`mvn -v` の `Java version` で確認）。シェルの `java` は mise 設定の OpenJDK 21.0.2 だが、ビルド・テスト・変換には使われない。
 - 補足: README は `.mvn/jvm.config` に言及しているが、`develop` には存在しない（上記環境では無しで成功）。
 
 ## Scripts
