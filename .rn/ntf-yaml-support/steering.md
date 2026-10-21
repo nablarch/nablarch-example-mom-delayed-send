@@ -21,7 +21,8 @@
 - 補足: README は `.mvn/jvm.config` に言及しているが、`develop` には存在しない（上記環境では無しで成功）。
 
 ## Scripts
-- `scripts/dump_xlsx.py`（Task #3 で作成）: Task #3 のサンプリング比較用。外部ライブラリなしで `.xlsx` の各シートのセル値をテキストダンプし、converter が生成した YAML と人手で比較できるようにする。
+- `scripts/dump_xlsx.py`（Task #3）: サンプリング比較用。外部ライブラリなしで `.xlsx` の各シートのセル値をテキストダンプし、converter が生成した YAML と目視で比較できるようにする（`python3 -I dump_xlsx.py <xlsx>`）。
+- `scripts/compare_samples.py`（Task #3）: サンプリング比較用。Excel の指定セル値と YAML の指定パスの値を突き合わせ、一致/不一致を Markdown 表で出力する（`python3 -I compare_samples.py <xlsx> <yaml-dir>`、全一致で rc=0）。データなしシートの YAML が空であることも確認する。
 
 ## Tasks
 
@@ -71,13 +72,13 @@
 **Purpose**: `nablarch-testing-converter` で Excel テストデータを YAML に変換し、ソースツリー内に配置してサンプリング比較で確認する。
 **Prerequisites**: #2
 **Steps**:
-- [ ] 対象 Excel の所在を確認する
-- [ ] 同名 `.xls` / `.xlsx` の併存を確認する
-- [ ] converter README の手順で全対象 Excel を YAML 変換する
-- [ ] 各 YAML について Excel とサンプリング比較する（各ファイル最低3件。3件未満は全件）
-- [ ] 比較結果を `checks/task-3.md` の Sampling Comparison に記録する
-- [ ] YAML をコミットする（Excel はまだ削除しない）
-- [ ] self-check
+- [x] 対象 Excel の所在を確認する（`ProjectInsertMessageRequestTest.xlsx` の1件）
+- [x] 同名 `.xls` / `.xlsx` の併存を確認する（併存なし）
+- [x] converter README の手順で全対象 Excel を YAML 変換する（`mvn com.nablarch.framework:nablarch-testing-converter:1.0.0-SNAPSHOT:convert`、Converted 1 file(s)）
+- [x] 各 YAML について Excel とサンプリング比較する（各ファイル最低3件。3件未満は全件）
+- [x] 比較結果を `checks/task-3.md` の Sampling Comparison に記録する
+- [x] YAML をコミットする（Excel はまだ削除しない）
+- [x] self-check
 - [ ] QA expert review (Agent: general-purpose / Opus)
 - [ ] user review（全 task 完了後にまとめて実施）
 **Completion criteria**:
