@@ -59,7 +59,7 @@
 - [x] `mvn dependency:resolve` と `mvn help:describe -Dplugin=com.nablarch.framework:nablarch-testing-converter:1.0.0-SNAPSHOT` で解決を確認する
 - [x] 変更したファイルをコミットする
 - [x] self-check
-- [ ] QA / language / software-engineering expert review (Agent: general-purpose / Opus)
+- [x] QA / language / software-engineering expert review（いずれも OK） (Agent: general-purpose / Opus)
 - [ ] user review（全 task 完了後にまとめて実施）
 **Completion criteria**:
 - `pom.xml` に `nablarch-testing-yaml:1.0.0-SNAPSHOT` が test スコープで追加されている
